@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+
+		<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		
+			<script>
+					var americaCapitals= {	  'Antigua y Barbuda':'Saint Johns'
+											, 'Argentina':'Buenos Aires'
+											, 'Bahamas':'Nassau'
+											, 'Barbados':'Bridgetown'
+											, 'Belice':'Belmopan'
+											, 'Bolivia':'Sucre'
+											, 'Brasil':'Brasilia'
+											, 'Canada':'Ottawa'
+											, 'Chile':'Santiago de Chile'
+											, 'Colombia':'Bogota'
+											, 'Costa Rica':'San Jose'
+											, 'Cuba':'La Habana'
+											, 'Dominica':'Roseau'
+											, 'Republica Dominicana':'Santo Domingo'
+											, 'Ecuador':'Quito'
+											, 'El Salvador':'San Salvador'
+											, 'Estados Unidos':'Washington D. C.'
+											, 'Granada':'Saint Georges'
+											, 'Guatemala':'Ciudad de Guatemala'
+											, 'Guyana':'Georgetown'
+											, 'Haiti':'Puerto Principe'
+											, 'Honduras':'Tegucigalpa'
+											, 'Jamaica':'Kingston'
+											, 'Mexico':'Mexico D. F.'
+											, 'Nicaragua':'Managua'
+											, 'Panama':'Ciudad de Panama'
+											, 'Paraguay':'Asuncion'
+											, 'Peru':'Lima'
+											, 'Puerto Rico':'San Juan'
+											, 'San Cristobal y Nieves':'Basseterre'
+											, 'Santa Lucia':'Castries'
+											, 'San Vicente y las Granadinas':'Kingstown'
+											, 'Surinam':'Paramaribo'
+											, 'Trinidad y Tobago':'Puerto Espana'
+											, 'Uruguay':'Montevideo'
+											, 'Venezuela':'Caracas'
+											};
+											
+					var europeCapitals= {	  'Albania':'Tirana'
+											, 'Alemania':'Berlin'
+											, 'Andorra':'Andorra la Vieja'
+											, 'Armenia':'Erevan'
+											, 'Austria':'Viena'
+											, 'Azerbaiyan':'Baku'
+											, 'Belgica':'Bruselas'
+											, 'Bielorrusia':'Minsk'
+											, 'Bosnia y Herzegovina':'Sarajevo'
+											, 'Bulgaria':'Sofia'
+											, 'Republica Checa':'Praga'
+											, 'Croacia':'Zagreb'
+											, 'Dinamarca':'Copenhague'
+											, 'Eslovaquia':'Bratislava'
+											, 'Eslovenia':'Lublijana'
+											, 'Espania':'Madrid'
+											, 'Estonia':'Tallin'
+											, 'Finlandia':'Helsinki'
+											, 'Francia':'Paris'
+											, 'Georgia':'Tiflis'
+											, 'Grecia':'Atenas'
+											, 'Hungria':'Budapest'
+											, 'Irlanda':'Dublin'
+											, 'Islandia':'Reikiavik'
+											, 'Italia':'Roma'
+											,'Letonia':'Riga'
+											,'Liechtenstein':'Vaduz'
+											,'Lituania':'Vilna'
+											,'Luxemburgo':'Luxemburgo'
+											,'Republica de Macedonia':'Skopje'
+											,'Malta':'La Valeta'
+											,'Moldavia':'Chisinau'
+											,'Monaco':'Monaco'
+											,'Montenegro':'Podgorica'
+											,'Noruega':'Oslo'
+											,'Paises Bajos':'Amsterdam'
+											,'Polonia':'Varsovia'
+											,'Portugal':'Lisboa'
+											,'Reino Unido':'Londres'
+											,'Rumania':'Bucarest'
+											,'Rusia':'Moscu'
+											,'San Marino':'Ciudad de San Marino'
+											,'Serbia':'Belgrado'
+											,'Suecia':'Estocolmo'
+											,'Suiza':'Berna'
+											,'Ucrania':'Kiev'
+											,'Vaticano':'Ciudad del Vaticano'
+											};
+					
+					var asiaCapitals= 	{	  'Afganistan':'Kabul'
+											, 'Arabia Saudita':'Riad'
+											, 'Barein':'Manama'
+											, 'Brunei':'Bandar Seri Begawan'
+											, 'Butan':'Timbu'
+											, 'Camboya':'Pnon Pehn'
+											, 'China':'Pekin'
+											, 'Chipre':'Nicosia'
+											, 'Corea del Norte':'Pyongyang'
+											, 'Corea del Sur':'Seul'
+											, 'Emiratos Arabes Unidos':'Abu Dabi'
+											, 'Filipinas':'Manila'
+											, 'India':'Nueva Delhi'
+											, 'Indonesia':'Yakarta'
+											, 'Iran':'Teheran'
+											, 'Iraq':'Bagdad'
+											, 'Israel':'Jerusalen'
+											, 'Japon':'Tokio'
+											, 'Jordania':'Amman'
+											, 'Kazajistan':'Astana'
+											, 'Kirguistan':'Biskek'
+											, 'Kuwait':'Ciudad de Kuwait'
+											, 'Laos':'Vientian'
+											, 'Libano':'Beirut'
+											, 'Malasia':'Kuala Lumpur'
+											, 'Maldivas':'Male'
+											, 'Mongolia':'Ulan Bator'
+											, 'Birmania':'Naypyidaw'
+											, 'Nepal':'Katmandu'
+											, 'Oman':'Mascate'
+											, 'Pakistan':'Islamabad'
+											, 'Palestina':'Ramala'
+											, 'Qatar':'Doha'
+											, 'Singapur':'Singapur'
+											, 'Siria':'Damasco'
+											, 'Sri Lanka':'Colombo'
+											, 'Tailandia':'Bangkok'
+											, 'Taiwan':'Taipeh'
+											, 'Tayikistan':'Dusambe'
+											, 'Timor Oriental':'Dili'
+											, 'Turkmenistan':'Asjabad'
+											, 'Turquia':'Ankara'
+											, 'Uzbekistan':'Tashkent'
+											, 'Vietnam':'Hanoi'
+											, 'Yemen':'Sana'
+											};
+											
+					var africaCapitals= {	  'Angola':'Luanda'
+											, 'Argelia':'Argel'
+											, 'Benin':'Porto-Novo'
+											, 'Botsuana':'Gaberones'
+											, 'Burkina Faso':'Uagadugú'
+											, 'Burundi':'Buyumbura'
+											
+											, 'Cabo Verde':'Praia'
+											, 'Camerun':'Yaunde'
+											, 'Republica Centroafricana':'Bangui'
+											, 'Chad':'Yamena'
+											, 'Comoras':'Moroni'
+											, 'Republica del Congo':'Brazzaville'
+											, 'Republica Democratica del Congo':'Kinshasa'
+											, 'Costa de Marfil':'Yamusukro'
+											, 'Egipto':'El Cairo'
+											, 'Eritrea':'Asmara'
+											, 'Etiopia':'Adis Abeba'
+											, 'Gabon':'Libreville'
+											, 'Gambia':'Banjul'
+											, 'Ghana':'Accra'
+											, 'Guinea':'Conakry'
+											, 'Guinea-Bissau':'Bissau'
+											, 'Guinea Ecuatorial':'Malabo'
+											, 'Kenia':'Nairobi'
+											, 'Lesoto':'Maseru'
+											, 'Liberia':'Monrovia'
+											, 'Libia':'Buyumbura'
+											, 'Madagascar':'Antananarivo'
+											, 'Malaui':'Lilongue'
+											, 'Mali':'Bamako'
+											, 'Marruecos':'Rabat'
+											, 'Mauricio':'Port Louis'
+											, 'Mauritania':'Nuakchot'
+											
+											, 'Mozambique':'Maputo'
+											, 'Namibia':'Windhoek'
+											, 'Niger':'Niamey'
+											, 'Nigeria':'Abuya'
+											, 'Republica Saharaui':'El Aaiun'
+											, 'Ruanda':'Kigali'
+											, 'Santo Tome y Príncipe':'Santo Tome'
+											, 'Senegal':'Dakar'
+											, 'Seychelles':'Victoria'
+											, 'Sierra Leona':'Freetown'
+											, 'Somalia':'Mogadiscio'
+											, 'Suazilandia':'Mbabane'
+											, 'Sudafrica':'Pretoria'
+											, 'Sudan del Norte':'Jartum'
+											, 'Sudan del Sur':'Yuba'
+											, 'Tanzania':'Dodoma'
+											, 'Togo':'Lome'
+											, 'Tunez':'Tunez'
+											, 'Uganda':'Kampala'
+											, 'Yibuti':'Yibuti'
+											, 'Zambia':'Lusaka'
+											, 'Zimbabue':'Harare'
+											};
+											
+					var oceaniaCapitals= {	  'Australia':'Canberra'
+											, 'Fiyi':'Suva'
+											, 'Kiribati':'Tarawa'
+											, 'Micronesia':'Palikir'
+											, 'Nauru':'Yaren'
+											, 'Nueva Zelanda':'Wellington'
+											, 'Palaos':'Melekeok'
+											, 'Papua Nueva Guinea':'Port Moresby'
+											, 'Islas Salomon':'Honiara'
+											, 'Samoa':'Apia'
+											, 'Tonga':'Nukualofa'
+											, 'Tuvalu':'Funafuti'
+											, 'Vanuatu':'Port Vila'
+											};
+					
+					var counterCorrect = 0;
+					var counterIncorrect = 0;
+					var counterTotalCountries = 0;
+					var refreshIntervalId = '';
+					var seconds = 0;
+					var minutes = 0;
+				
+					var alreadyDisplayedCountries = new Array();
+
+					function validateCapital(element){
+						var valueOption = document.getElementById(element.id);
+						
+						if (valueOption.id==valueOption.attributes['value'].value){
+							counterCorrect++;
+						}
+						else{
+							counterIncorrect++;
+							}
+							
+						showCounters();		
+						pickRandomKey();
+					};
+					
+					function initializeAll(){
+						document.getElementById('mapaHeader').style.visibility = 'visible';
+						document.getElementById('totalCounter').innerHTML = "";
+						document.getElementById('updatetime').innerHTML = "";
+											
+					    clearInterval(refreshIntervalId);
+						seconds = 0;
+						minutes = 0;
+						refreshIntervalId = setInterval(function(){
+								document.getElementById('updatetime').innerHTML = '<span class="glyphicon glyphicon-time"></span>  Tiempo Transcurrido: ' + minutes + ' minutos , '  + seconds + ' segundos. <span id="shareFacebook"></span>';
+								seconds++;
+								if (seconds==60){
+									minutes++;
+									seconds=0;
+								};
+						}, 1000);
+						
+						document.getElementById('startButton').value = "Comenzar de nuevo";
+						
+						
+						counterCorrect = 0;
+						counterIncorrect = 0;
+						counterTotalCountries = 0;
+						alreadyDisplayedCountries = new Array();
+						
+						pickRandomKey();
+					};
+
+					function pickRandomKey() {
+						var continentsSelected = getSelectedContinentsObjects();
+						var keys = Object.keys(continentsSelected);
+						var keyCountry = 'no_country';
+						
+						if ( alreadyDisplayedCountries.length == getObjectSize(continentsSelected)){
+							clearInterval(refreshIntervalId);
+							alert('Ha completado la lista de paises!\nFelicitaciones. Usted es un verdadero campeon.');
+							showShareFacebook();
+							return;
+							//reiniciar variables y juego
+						}
+						
+						do{
+							keyCountry = keys[ keys.length * Math.random() << 0];
+							
+						}while ( (alreadyDisplayedCountries.indexOf(keyCountry) > -1) )
+						
+						if (keyCountry != 'no_country'){
+							
+							alreadyDisplayedCountries.push(keyCountry);
+						
+							var capitalsArray = new Array();
+							var capital = continentsSelected[keyCountry];
+							var questionDiv = document.getElementById('question');
+							questionDiv.innerHTML = ' <span> Cual es la capital de ' + keyCountry +'? </span>';
+							
+							
+							capitalsArray.push(capital);
+					
+
+								do{
+									firstIncorrectOption = continentsSelected[keys[ keys.length * Math.random() << 0]];
+								}while ( firstIncorrectOption == capital )
+							
+							var secondIncorrectOption ='';
+							
+							do{
+									secondIncorrectOption = continentsSelected[keys[ keys.length * Math.random() << 0]];
+								}while ( ( secondIncorrectOption == capital ) || ( secondIncorrectOption == firstIncorrectOption ))
+					
+							capitalsArray.push(firstIncorrectOption);
+							capitalsArray.push(secondIncorrectOption);
+							
+							capitalsArray.sort();
+							
+							var capitalsDiv = document.getElementById('capitals');
+							
+							var textCapitals = '';
+							for (var index in capitalsArray){
+							textCapitals = textCapitals + '<span class="glyphicon glyphicon-arrow-right"></span> <span style="padding-right:25px;" id="' + capitalsArray[index] + '" value="' + capital +'" onclick="validateCapital(this)" >' + capitalsArray[index] + '</span>' ;
+							};
+							capitalsDiv.innerHTML = textCapitals;
+							
+							showInMap(capital, keyCountry);
+						}
+					
+										
+					};
+					
+					function showInMap(capital, country){
+					
+					 var address = capital + ', ' + country;
+
+					   var map = new google.maps.Map(document.getElementById('mapholder'), { 
+						   mapTypeId: google.maps.MapTypeId.TERRAIN,
+						   zoom: 3
+					   });
+
+					   var geocoder = new google.maps.Geocoder();
+
+					   geocoder.geocode({
+						  'address': address
+					   }, 
+					   function(results, status) {
+						  if(status == google.maps.GeocoderStatus.OK) {
+							 new google.maps.Marker({
+								position: results[0].geometry.location,
+								map: map
+							 });
+							 map.setCenter(results[0].geometry.location);
+						  }
+					   });
+					
+					};
+					
+					function showCounters(){
+					    var  totalContinentsSelected = getObjectSize(getSelectedContinentsObjects());
+						var totalCounterText = document.getElementById('totalCounter');
+							totalCounterText.innerHTML = '<span class="glyphicon glyphicon-thumbs-up"></span>   Respuestas correctas : ' 
+														 + counterCorrect + "/" + totalContinentsSelected
+														 + '<br/> <span class="glyphicon glyphicon-thumbs-down"></span>   Respuestas incorrectas: ' + counterIncorrect + "/" + totalContinentsSelected ;
+					};
+					
+					function getObjectSize(obj) {
+						var size = 0, key;
+						for (key in obj) {
+							if (obj.hasOwnProperty(key)) size++;
+						}
+						return size;
+					};
+										
+					function getSelectedContinentsObjects(){
+						var resultSelectedContinents = {};
+						var america = document.getElementById('cb_america');
+						var africa = document.getElementById('cb_africa');
+						var asia = document.getElementById('cb_asia');
+						var europa = document.getElementById('cb_europa');
+						var oceania = document.getElementById('cb_oceania');
+						
+						if (america.checked){
+							merge_objects(resultSelectedContinents, americaCapitals) ;
+						};
+						if (africa.checked){
+							merge_objects(resultSelectedContinents, africaCapitals) ;
+						};
+						if (asia.checked){
+							merge_objects(resultSelectedContinents, asiaCapitals) ;
+						};
+						if (europa.checked){
+							merge_objects(resultSelectedContinents, europeCapitals) ;
+						};
+						if (oceania.checked){
+							merge_objects(resultSelectedContinents, oceaniaCapitals) ;
+						};
+						
+						return resultSelectedContinents;
+					};
+					
+					function merge_objects(obj1,obj2){
+						for (var attrname in obj2) {
+							obj1[attrname] = obj2[attrname]; 
+						}
+						return obj1;
+					};
+					
+					function showInMapLink(element){
+						var capital = element.attributes["capital"].value;
+						var country = element.attributes["country"].value;
+						showInMap(capital,country);
+					};
+					
+					function buscarPaisOCapital(){
+						var searchedText = document.getElementById("searchCapital").value.trim().toLowerCase();
+						var allCountries = {};
+						merge_objects(allCountries, americaCapitals) ;
+						merge_objects(allCountries, africaCapitals) ;
+						merge_objects(allCountries, asiaCapitals) ;
+						merge_objects(allCountries, europeCapitals) ;
+						merge_objects(allCountries, oceaniaCapitals) ;
+						
+						for (var keyCountryName in allCountries){
+							if ((allCountries[keyCountryName].trim().toLowerCase().indexOf(searchedText) > -1 )|| 
+								(keyCountryName.trim().toLowerCase().indexOf(searchedText) > -1 )){
+								var linkText = "<a id='search_result_link' href='#mapaHeader' capital='" + allCountries[keyCountryName] + "' country='" + keyCountryName +  "' onclick='showInMapLink(this)' >" + allCountries[keyCountryName] + "," + keyCountryName + " </a>"
+								document.getElementById('search_result').innerHTML = linkText;
+								return;
+								}
+						}
+					};
+					
+					function showShareFacebook(){
+						var  totalContinentsSelected = getObjectSize(getSelectedContinentsObjects());
+						var resultados =  'Respuestas correctas : ' 
+														 + counterCorrect + " de " + totalContinentsSelected 
+														 + "  Tiempo Transcurrido: " + minutes + " minutos , "  + seconds + " segundos." ;
+					 
+						var titulo = "Aprende las Capitales del Mundo con Javascript.";
+						
+						//resultados.replace(/ /g,"&nbsp;");
+						//titulo.replace(/ /g,"&nbsp;");
+						//<a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=capitales&amp;p[summary]=3acertadas&amp;p[url]=lascapitalesdelmundojs.herokuapp.com&amp;p[images][0]=http://lascapitalesdelmundojs.herokuapp.com/paris.jpg','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)">Insert text or an image here.</a>
+						//https://www.facebook.com/sharer/sharer.php?src=bm&u=http%3A%2F%2Fwww.brainyquote.com%2Fquotes%2Fquotes%2Fr%2Frobertfros101059.html%23ZyMYDvQA81hucXzB.01&t=Life+Quotes+-+BrainyQuote&v=3
+						//encodeURIComponent
+						document.getElementById('shareFacebook').innerHTML = '<a title="Compartir mis resultados en Facebook" href="https://www.facebook.com/sharer/sharer.php?src=bm&u=' + encodeURIComponent("<div> 3 de 5 correctas</div>") + '">Compartir mis resultados en Facebook</a>'; 
+						//"<a onClick=\"window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=" + encodeURIComponent(titulo) + "&amp;p[summary]=" +  encodeURIComponent(resultados)  + "&amp;p[url]=lascapitalesdelmundojs.herokuapp.com&amp;p[images][0]=http://lascapitalesdelmundojs.herokuapp.com/paris.jpg','sharer','toolbar=0,status=0,width=548,height=325');\" href=\"javascript: void(0)\">Compartir mis resultados en Facebook.</a>" ;
+						//'<a title="Compartir mis resultados en Facebook" href="http://www.facebook.com/sharer.php?s=100&p[title]=' + titulo + '&p[summary]=' + resultados + '&p[url]=lascapitalesdelmundojs.herokuapp.com&p[images[0]=http://lascapitalesdelmundojs.herokuapp.com/paris.jpg]" target="_blank">Compartir mis resultados en Facebook</a>'
+					};
+					
+				</script>
+		     <script src="https://code.jquery.com/jquery.js"></script>
+			<!-- Latest compiled and minified CSS -->
+			<link rel="stylesheet" href="css/bootstrap.min.css">
+
+			<!-- Optional theme -->
+			<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="js/bootstrap.min.js"></script>
+			
+			<style>
+			
+ 
+			#title_container
+				{
+					margin-left: 50px;
+				}
+			 #main_container
+				{
+					margin-left: 95px;
+				}
+			.checkboxclass
+				{
+					padding-right: 25px;
+					padding-left: 5px;
+					font-size: 15px;
+				}
+			#capitals span 
+				{
+					color:#2a6496;
+					font-size: 25px;
+					cursor: pointer;
+				}
+			#capitals span:hover
+				{
+					color:#d0e4fe;
+					cursor: pointer;
+				}
+				
+			</style>
+		
+		</head>
+		<body>
+		<div id='title_container'>
+			<h1><span class="glyphicon glyphicon-pushpin"></span> Aprende las capitales del mundo con JavaScript.</h1>
+		</div>	
+		<div id='main_container'>
+			<p style="font-style:italic;">Con la siguiente aplicacion podras aprender las capitales del mundo facilmente.</p>
+			<img src="paris.jpg">
+			<br>
+			<br>
+			<p >Por favor, seleccione que Continentes quiere incluir en la secuencia:</p>
+		
+				<input  id='cb_america' checked type='checkbox'><label class='checkboxclass'>America</label></input>
+				<input  id='cb_europa' type='checkbox'><label class='checkboxclass'>Europa</label></input>
+				<input  id='cb_asia' type='checkbox'><label class='checkboxclass'>Asia</label></input>
+				<input  id='cb_africa' type='checkbox'><label class='checkboxclass'>Africa</label></input>
+				<input  id='cb_oceania' type='checkbox'><label class='checkboxclass'>Oceania</label></input>
+			<br/>
+			<br/>
+			<input type='button' id='startButton' class='btn btn-primary' value='Comenzar' onclick='initializeAll()' >
+			<br/>
+			<a onClick="window.open('http://www.facebook.com/sharer.php?s=100&amp;p[title]=capitales&amp;p[summary]=3acertadas&amp;p[url]=lascapitalesdelmundojs.herokuapp.com&amp;p[images][0]=http://lascapitalesdelmundojs.herokuapp.com/paris.jpg','sharer','toolbar=0,status=0,width=548,height=325');" href="javascript: void(0)">Insert text or an image here.</a>
+					
+			<br/>
+			<div id='totalCounter'></div>
+			<div id='updatetime'></div>
+			
+			
+            <h2><div id='question'></div></h2>
+			<br/>
+			<div id='capitals'></div></h2>
+			
+			
+			<br/>
+			<span id='mapaHeader' style='visibility:hidden;' >Ubicacion de este pais en el mapa:</span>
+			<br/>
+			 <div id="mapholder" style="width: 500px; height: 300px;"></div> 
+			<br/>
+				
+			<br/>
+			Buscar pais y/o capital : 
+			<input id='searchCapital'>
+			<input type='button' class='btn btn-primary' id='startButton' value='Buscar' onclick='buscarPaisOCapital()' >
+			<span id='search_result'></span>
+			<br/>
+			<br/>			
+			<address>
+			  <span class="glyphicon glyphicon-send" > </span> <strong>Alberto Montellano, 2014</strong><br>
+			  <a href="mailto:albertomontellano@gmail.com">albertomontellano@gmail.com</a><br>
+			  Cochabamba, Bolivia<br>
+			  <abbr title="Phone">P:</abbr> (591) 764-04338
+			</address>
+			<span>Poder aprender los paises y capitales viendolos en un mapa, no solo como listas de texto plano.</span>
+			<br>
+			<br>
+			<p> </p>
+		</div>	
+		</body>
+</html>
